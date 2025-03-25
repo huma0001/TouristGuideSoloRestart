@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Success</title>
+    <link th:href="@{/main.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div align="center">
+    <h1>Registered Attraction Information</h1>
+    <div>
+        <p>Name: <strong th:text="${touristAttraction.name}"></strong></p>
+        <p>Description: <strong th:text="${touristAttraction.description}"></strong></p>
+        <p>Tags: <strong th:text="${touristAttraction.tags}"></strong></p>
+        <p>City: <strong th:text="${touristAttraction.city}"></strong></p>
+    </div>
+</div>
+
+</body>
+</html>

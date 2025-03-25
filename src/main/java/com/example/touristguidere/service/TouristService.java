@@ -20,12 +20,24 @@ public class TouristService {
         return touristRepository.deleteAttraction(attractionName);
     }
 
+    public TouristAttraction editAttractionName(String attractionName, String newName){
+        return touristRepository.editAttractionName(attractionName, newName);
+    }
+
     public TouristAttraction addAttraction(TouristAttraction newAttraction){
         return touristRepository.addAttraction(newAttraction);
     }
 
-    public TouristAttraction updateAttractionName(String attractionName, String newAttractionName){
-        return touristRepository.updateAttractionName(attractionName, newAttractionName);
+    public TouristAttraction updateAttraction(String attractionName, String newName, String newDescription, String newCity ,List<String> newTags){
+        return touristRepository.updateTouristAttraction(attractionName, newName, newDescription, newCity ,newTags);
+    }
+
+    public List<String> getTagsByAttractionName(String attractionName){
+        return touristRepository.getTagsByAttractionName(attractionName);
+    }
+
+    public List<String> getAvailableTags() {
+        return touristRepository.getAvailableTags();
     }
 
     public TouristAttraction getAttractionByName(String attractionName){
@@ -34,6 +46,10 @@ public class TouristService {
 
     public List<TouristAttraction> getAllTouristAttractions(){
         return  touristRepository.getAllTouristAttractions();
+    }
+
+    public List<String> getAvailableCities(){
+        return touristRepository.getAvailableCities();
     }
 
 

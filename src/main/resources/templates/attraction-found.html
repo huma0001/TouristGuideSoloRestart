@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="'Details: ' + ${foundAttraction.name}">Attraction Details</title>
+  <link th:href="@{/main.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <h1 class="attraction-title" th:text="'Attraction Found: ' + ${foundAttraction.name}"></h1>
+
+  <div class="attraction-details" align="center">
+    <h3>Description:</h3>
+    <p class="description" th:text="${foundAttraction.description}"></p>
+
+    <h3 align="center">Tags:</h3>
+    <ul class="tags-list" th:if="${not #lists.isEmpty(foundAttraction.tags)}">
+      <li th:each="tag : ${foundAttraction.tags}" th:text="${tag}"></li>
+    </ul>
+    <p th:if="${#lists.isEmpty(foundAttraction.tags)}">No tags available</p>
+  </div>
+
+  <div class="actions">
+    <a th:href="@{/attractions}" class="btn back-btn">Back to All Attractions</a>
+    <a th:href="@{'/attractions/' + ${foundAttraction.name} + '/tags'}"
+       class="btn tags-btn">View Tags Separately</a>
+  </div>
+</div>
+</body>
+</html>

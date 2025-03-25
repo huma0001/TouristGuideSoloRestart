@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tourist Attractions Front Page</title>
+  <link th:href="@{/main.css}" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a th:href="@{/attractions}">Attractions</a></li>
+      <li><a th:href="@{/about}">About</a></li>
+      <li><a th:href="@{/contact}">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Welcome to the Tourist Guide</h1>
+  <p>Explore the best tourist attractions!</p>
+  <div class="attractions-table">
+    <table border="1px">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>City</th>
+        <th>Tags</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Loop through each attraction and display its name and description -->
+      <tr th:each="attraction : ${touristAttractions}">
+        <td th:text="${attraction.name}"></td>
+        <td th:text="${attraction.description}"></td>
+        <td th:text="${attraction.city}"></td>
+        <!-- For Tags, we use a button that acts like a link -->
+        <td>
+          <form th:action="@{/attractions/{name}/tags(name=${attraction.name})}" method="get">
+            <button type="submit">View Tags</button>
+          </form>
+
+          <form th:action="@{/attractions/{name}/edit(name=${attraction.name})}" method="get">
+            <button type="submit">Edit</button>
+          </form>
+
+          <form th:action="@{/attractions/delete/{name}(name=${attraction.name})}" method="post" onsubmit="return confirm('Are you sure you want to delete this attraction?');">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+    <!-- Add Attraction button -->
+    <form th:action="@{/attractions/add}" method="get">
+      <button type="submit">Add Attraction</button>
+    </form>
+  </div>
+</main>
+
+<footer>
+  <p>2025 Tourist Guide. All rights reserved.</p>
+  <p>Address: Guldbergsgade 29N</p>
+  <p>Contact Information:</p>
+  <p>Number 12 42 52 66 </p>
+  <p>E-Mail SpecialsUnite@gmail.com</p>
+</footer>
+
+</body>
+</html>

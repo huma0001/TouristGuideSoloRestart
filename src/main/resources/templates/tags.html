@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tags for <span th:text="${name}"></span></title>
+    <link th:href="@{/main.css}" rel="stylesheet" />
+</head>
+<body>
+<h1>Tags for <span th:text="${name}"></span></h1>
+
+<div th:if="${tags == null or tags.isEmpty()}">
+    <p>No tags found for this attraction</p>
+</div>
+
+<ul th:if="${not (tags == null or tags.isEmpty())}">
+    <li th:each="tag : ${tags}" th:text="${tag}"></li>
+</ul>
+
+<a th:href="@{/attractions}">Back To Homepage</a>
+</body>
+</html>

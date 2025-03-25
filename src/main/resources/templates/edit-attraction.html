@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Attraction</title>
+</head>
+<body>
+
+<form method="post" th:action="@{/attractions/update}">
+    <!-- Hidden input for original name -->
+    <input type="hidden" name="originalName" th:value="${touristAttraction.name}" />
+
+    <label>Name:</label>
+    <input type="text" name="name" th:value="${touristAttraction.name}" required /><br/>
+
+    <label>Description:</label>
+    <textarea name="description" required>[[${touristAttraction.description}]]</textarea><br/>
+
+    <label>City:</label>
+    <select name="city">
+        <option th:each="city : ${allCities}" th:value="${city}" th:text="${city}" th:selected="${touristAttraction.city == city}"></option>
+    </select><br/>
+
+    <label>Tags:</label><br/>
+    <div th:each="tag : ${allTags}">
+        <input type="checkbox" name="tags" th:value="${tag}" th:checked="${touristAttraction.tags.contains(tag)}" />
+        <label th:text="${tag}"></label>
+    </div><br/>
+
+    <button type="submit">Update</button>
+</form>
+
+
+</body>
+</html>
